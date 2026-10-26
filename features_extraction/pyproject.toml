@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "features-extraction"
+version = "0.1.0"
+description = "Batched ViT feature extraction with optional Reinhard stain normalization."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT AND (Apache-2.0 OR BSD-2-Clause)"
+authors = [{name="Giorgio Buzzanca", email="g.buzzanca@lumc.nl"}]
+dependencies = [
+    "torch>=2.11.0",
+    "torchvision>=0.26.0",
+    "click>=8.3.3",
+    "pillow>=12.1.1",
+    "h5py>=3.16.0",
+    "numpy>=1.22",
+    "pyyaml>=6.0.3",
+    "timm>=1.0.27",
+    "tqdm>=4.67.3",
+    "opencv-python>=4.13.0.92",
+    "openslide-python>=1.4.3",
+    "wsipatch>=0.1.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/features_extraction"]
+
+[project.scripts]
+features-extract = "features_extraction.cli:cli"
+
+[tool.uv.sources]
+wsipatch = { workspace = true }

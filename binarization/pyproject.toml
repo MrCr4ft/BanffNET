@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "binarization"
+version = "0.1.0"
+description = "ROI extraction and tissue segmentation for whole-slide images."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT AND (Apache-2.0 OR BSD-2-Clause)"
+authors = [{name="Giorgio Buzzanca", email="g.buzzanca@lumc.nl"}]
+keywords = ["WSI", "Binarization"]
+dependencies = [
+    "torch>=2.11.0",
+    "torchvision>=0.26.0",
+    "segmentation-models-pytorch>=0.5.0",
+    "opencv-python>=4.13.0",
+    "openslide-python>=1.4.3",
+    "pillow>=12.1.1",
+    "click>=8.3.3",
+    "wsipatch>=0.1.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/binarization"]
+
+[project.scripts]
+tissue-binarize = "binarization.cli:cli"
+
+[tool.uv.sources]
+wsipatch = { workspace = true }

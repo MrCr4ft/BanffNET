@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "banffnet"
+version = "0.1.0"
+description = "End-to-end BANFF score prediction for kidney biopsies."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT AND (Apache-2.0 OR BSD-2-Clause)"
+authors = [{name="Giorgio Buzzanca", email="g.buzzanca@lumc.nl"}]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+]
+dependencies = [
+    "binarization>=0.1.0",
+    "click>=8.3.3",
+    "features-extraction>=0.1.0",
+    "h5py>=3.16.0",
+    "numpy>=2.2.6",
+    "pyyaml>=6.0.3",
+    "torch>=2.11.0",
+    "tqdm>=4.67.3",
+    "wsipatch>=0.1.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/banffnet"]
+
+[project.scripts]
+banffnet = "banffnet.cli:cli"
+
+[tool.uv.sources]
+wsipatch            = { workspace = true }
+binarization        = { workspace = true }
+features-extraction = { workspace = true }

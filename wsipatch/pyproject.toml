@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "wsipatch"
+version = "0.1.0"
+description = "WSI patch planning with Roaring bitmap storage"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT AND (Apache-2.0 OR BSD-2-Clause)"
+authors = [{name="Giorgio Buzzanca", email="g.buzzanca@lumc.nl"}]
+dependencies = [
+    "numpy>=2.2.6",
+    "opencv-python>=4.13.0.92",
+    "pyroaring>=1.1.0",
+    "openslide-python>=1.4.3",
+    "click>=8.3.3",
+    "h5py>=3.16.0",
+    "tqdm>=4.67.3",
+]
+
+[project.scripts]
+wsipatch = "wsipatch.cli:cli"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/wsipatch"]
